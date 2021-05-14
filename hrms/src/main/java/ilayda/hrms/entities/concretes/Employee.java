@@ -8,14 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+
+
 @Entity
 @Table(name="employees")
 public class Employee extends User {
 	
-	@Id
-	@GeneratedValue
-	@Column(name="user_id")
-	private int userId;
+
 	
 	@Column(name="first_name")
 	private String firstName;
@@ -29,22 +29,14 @@ public class Employee extends User {
 	@Column(name="birth_date")
 	private Date birthDate;
 	
-	public Employee(int userId, String firstName, String lastName, String identityNumber, Date birthDate) {
+	public Employee(String firstName, String lastName, String identityNumber, Date birthDate) {
 		super();
-		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.identityNumber = identityNumber;
 		this.birthDate = birthDate;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
 
 	public String getFirstName() {
 		return firstName;
