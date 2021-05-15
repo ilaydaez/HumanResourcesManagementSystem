@@ -19,17 +19,19 @@ public class User {
 	private int id;
 	
 	@Column(name="email")
-	private String eMail;
+	private String email;
 	
 	@Column(name="password")
 	private String password;
+	
+	private String validationCode;
 	
 	public User() {}
 	
 	public User(int id, String eMail, String password) {
 		super();
 		this.id = id;
-		this.eMail = eMail;
+		this.email = eMail;
 		this.password = password;
 	}
 
@@ -42,12 +44,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String geteMail() {
-		return eMail;
+	public String getEmail() {
+		return email;
 	}
 
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
+	public void setEmail(String eMail) {
+		this.email = eMail;
 	}
 
 	public String getPassword() {
@@ -56,5 +58,10 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getValidationCode() {
+		validationCode= email.charAt(0) + "VLD" + email.charAt(1) +"CD";
+		return validationCode;
 	}
 }

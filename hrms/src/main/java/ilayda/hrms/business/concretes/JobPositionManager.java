@@ -27,19 +27,21 @@ public class JobPositionManager implements JobPositionService{
 
 	@Override
 	public void add(JobPosition position) {
-		// TODO Auto-generated method stub
+		if(position.getPosition()!=null) {
+			this.positionDao.save(position);
+		}
 		
 	}
 
 	@Override
 	public void delete(JobPosition position) {
-		// TODO Auto-generated method stub
+		this.positionDao.delete(position);
 		
 	}
 
 	@Override
 	public void update(JobPosition position) {
-		// TODO Auto-generated method stub
+		this.positionDao.save(position);
 		
 	}
 

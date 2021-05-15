@@ -13,6 +13,7 @@ import ilayda.hrms.entities.concretes.User;
 public class UserManager implements UserService {
 	
 	private UserDao userDao;
+	
 
 	@Autowired
 	public UserManager(UserDao userDao) {
@@ -26,8 +27,13 @@ public class UserManager implements UserService {
 
 	@Override
 	public void add(User user) {
-		this.userDao.save(user);
+		if(user.getPassword()!=null && user.getPassword()!=null) {
+			this.userDao.save(user);
+		}else {
+			return;
+		}
 		
+	
 	}
 
 	@Override
@@ -38,6 +44,7 @@ public class UserManager implements UserService {
 
 	@Override
 	public void update(User user) {
+		this.userDao.save(user);
 		
 	}
 

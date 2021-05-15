@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +27,16 @@ public class EmployeesController {
 	@GetMapping("/getall")
 	public List<Employee> getAll(){
 		return this.employeeService.getAll();
+	}
+	
+	@PostMapping("/add")
+	public void add(@RequestBody Employee employee) {
+		this.employeeService.add(employee);	
+	}
+	
+	@PostMapping("/update")
+	public void update(@RequestBody Employee employee) {
+		this.employeeService.update(employee);	
 	}
 
 }

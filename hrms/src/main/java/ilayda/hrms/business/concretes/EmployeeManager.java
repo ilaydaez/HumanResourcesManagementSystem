@@ -27,19 +27,24 @@ public class EmployeeManager implements EmployeeService {
 
 	@Override
 	public void add(Employee employee) {
-		// TODO Auto-generated method stub
+		if(employee.getFirstName()!=null && employee.getLastName()!=null 
+			&& employee.getIdentityNumber()!=null) {
+			this.employeeDao.save(employee);
+		}else {
+			return;
+		}
 		
 	}
 
 	@Override
 	public void delete(Employee employee) {
-		// TODO Auto-generated method stub
+		this.employeeDao.delete(employee);
 		
 	}
 
 	@Override
 	public void update(Employee employee) {
-		// TODO Auto-generated method stub
+		this.employeeDao.save(employee);
 		
 	}
 

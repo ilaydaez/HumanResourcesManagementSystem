@@ -27,19 +27,25 @@ public class SystemPersonnelManager implements SystemPersonnelService {
 
 	@Override
 	public void add(SystemPersonnel personnel) {
-		// TODO Auto-generated method stub
+		if(personnel.getFirstName()!=null && personnel.getLastName()!=null
+				&& personnel.getEmail()!=null) {
+			this.personnelDao.save(personnel);
+		}else {
+			return;
+		}
+		
 		
 	}
 
 	@Override
 	public void delete(SystemPersonnel personnel) {
-		// TODO Auto-generated method stub
+		this.personnelDao.delete(personnel);
 		
 	}
 
 	@Override
 	public void update(SystemPersonnel personnel) {
-		// TODO Auto-generated method stub
+		this.personnelDao.save(personnel);
 		
 	}
 

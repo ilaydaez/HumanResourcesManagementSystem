@@ -23,6 +23,8 @@ public class SystemPersonnel extends User{
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
+	
+	public SystemPersonnel() {}
 
 
 	public String getFirstName() {

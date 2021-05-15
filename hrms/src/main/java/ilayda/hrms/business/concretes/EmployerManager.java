@@ -27,19 +27,23 @@ public class EmployerManager implements EmployerService{
 
 	@Override
 	public void add(Employer employer) {
-		// TODO Auto-generated method stub
+		if(employer.getPhone()!=null && employer.getCompanyName()!=null) {
+			this.employerDao.save(employer);
+		}else {
+			return;
+		}
 		
 	}
 
 	@Override
 	public void delete(Employer employer) {
-		// TODO Auto-generated method stub
+		this.employerDao.delete(employer);
 		
 	}
 
 	@Override
 	public void update(Employer employer) {
-		// TODO Auto-generated method stub
+		this.employerDao.save(employer);
 		
 	}
 

@@ -8,9 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-
-
 @Entity
 @Table(name="employees")
 public class Employee extends User {
@@ -36,6 +33,8 @@ public class Employee extends User {
 		this.identityNumber = identityNumber;
 		this.birthDate = birthDate;
 	}
+	
+	public Employee() {}
 
 
 	public String getFirstName() {
