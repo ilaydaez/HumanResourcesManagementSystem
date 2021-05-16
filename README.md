@@ -1,6 +1,6 @@
 # HumanResourcesManagementSystem
 
-![image](https://user-images.githubusercontent.com/77542051/118402650-7c6dd880-b673-11eb-9b36-89d2c66e3693.png)
+![image](https://user-images.githubusercontent.com/77542051/118402689-b343ee80-b673-11eb-92d8-08f644d4b84f.png)
 
 HumanResourcesManagementSystem iş arayanların, iş verenlerin ve sistem personellerinden oluşan bir sistemdir. 
 İş verenlerin iş pozisyonlarını ekleyebildiği bu pozisyona uygun iş arayanların ise başvurularını yapabildiği bir sistemdir.
