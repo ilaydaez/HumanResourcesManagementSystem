@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ilayda.hrms.business.abstracts.EmployeeService;
+import ilayda.hrms.core.utilities.result.DataResult;
+import ilayda.hrms.core.utilities.result.Result;
 import ilayda.hrms.entities.concretes.Employee;
 
 @RestController
@@ -25,7 +27,7 @@ public class EmployeesController {
 	}
 	
 	@GetMapping("/getall")
-	public List<Employee> getAll(){
+	public DataResult<List<Employee>> getAll(){
 		return this.employeeService.getAll();
 	}
 	
@@ -35,8 +37,8 @@ public class EmployeesController {
 	}
 	
 	@PostMapping("/update")
-	public void update(@RequestBody Employee employee) {
-		this.employeeService.update(employee);	
+	public Result update(@RequestBody Employee employee) {
+		return this.employeeService.update(employee);	
 	}
 
 }

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ilayda.hrms.business.abstracts.JobPositionService;
+import ilayda.hrms.core.utilities.result.DataResult;
+import ilayda.hrms.core.utilities.result.Result;
 import ilayda.hrms.entities.concretes.JobPosition;
 
 
@@ -26,13 +28,13 @@ public class JobPositionsController {
 	}
 	
 	@GetMapping("/getall")
-	public List<JobPosition> getAll(){
+	public DataResult<List<JobPosition>> getAll(){
 		return this.positionService.getAll();
 	}
 	
 	@PostMapping("/add")
-	public void add(@RequestBody JobPosition position) {
-		this.positionService.add(position);
+	public Result add(@RequestBody JobPosition position) {
+		return this.positionService.add(position);
 	}
 	
 

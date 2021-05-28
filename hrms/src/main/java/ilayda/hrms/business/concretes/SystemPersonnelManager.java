@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ilayda.hrms.business.abstracts.SystemPersonnelService;
+import ilayda.hrms.core.utilities.result.DataResult;
+import ilayda.hrms.core.utilities.result.Result;
+import ilayda.hrms.core.utilities.result.SuccessDataResult;
+import ilayda.hrms.core.utilities.result.SuccessResult;
 import ilayda.hrms.dataAccess.abstracts.SystemPersonnelDao;
 import ilayda.hrms.entities.concretes.SystemPersonnel;
 
@@ -21,32 +25,36 @@ public class SystemPersonnelManager implements SystemPersonnelService {
 	}
 
 	@Override
-	public List<SystemPersonnel> getAll() {
-		return this.personnelDao.findAll();
+	public DataResult<List<SystemPersonnel>> getAll() {
+		return new SuccessDataResult<List<SystemPersonnel>>(this.personnelDao.findAll(),"Sistem Personeleri Listelendi");
 	}
 
 	@Override
-	public void add(SystemPersonnel personnel) {
-		if(personnel.getFirstName()!=null && personnel.getLastName()!=null
-				&& personnel.getEmail()!=null) {
+	public Result add(SystemPersonnel personnel) {
+		
+			
 			this.personnelDao.save(personnel);
-		}else {
-			return;
+			
+			return new SuccessResult("Sistem Personeli Eklendi");
 		}
 		
-		
-	}
 
 	@Override
-	public void delete(SystemPersonnel personnel) {
+	public Result delete(SystemPersonnel personnel) {
 		this.personnelDao.delete(personnel);
+		return new SuccessResult("Personel Silindi");
 		
 	}
 
 	@Override
-	public void update(SystemPersonnel personnel) {
+	public Result update(SystemPersonnel personnel) {
 		this.personnelDao.save(personnel);
+		return new SuccessResult("Personel Güncellendi");
 		
 	}
+
+	
+
+	
 
 }

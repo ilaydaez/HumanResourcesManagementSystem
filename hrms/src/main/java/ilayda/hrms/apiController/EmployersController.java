@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ilayda.hrms.business.abstracts.EmployerService;
+import ilayda.hrms.core.utilities.result.DataResult;
+import ilayda.hrms.core.utilities.result.Result;
 import ilayda.hrms.entities.concretes.Employer;
 
 @RestController
@@ -25,13 +27,13 @@ public class EmployersController {
 	}
 	
 	@GetMapping("/getall")
-	public List<Employer> getAll(){
+	public DataResult<List<Employer>> getAll(){
 		return this.employerService.getAll();
 	}
 	
 	@PostMapping("/add")
-	public void add(@RequestBody Employer employer) {
-		this.employerService.add(employer);
+	public Result add(@RequestBody Employer employer) {
+		return this.employerService.add(employer);
 	}
 
 }

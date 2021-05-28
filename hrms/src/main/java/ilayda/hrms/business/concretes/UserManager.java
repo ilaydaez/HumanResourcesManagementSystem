@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ilayda.hrms.business.abstracts.UserService;
+import ilayda.hrms.core.utilities.result.DataResult;
+import ilayda.hrms.core.utilities.result.ErrorResult;
+import ilayda.hrms.core.utilities.result.Result;
+import ilayda.hrms.core.utilities.result.SuccessDataResult;
+import ilayda.hrms.core.utilities.result.SuccessResult;
 import ilayda.hrms.dataAccess.abstracts.UserDao;
 import ilayda.hrms.entities.concretes.User;
 
@@ -21,31 +26,41 @@ public class UserManager implements UserService {
 	}
 
 	@Override
-	public List<User> getAll() {
-		return this.userDao.findAll();
+	public DataResult<List<User>> getAll() {
+		return new SuccessDataResult<List<User>>(this.userDao.findAll(), "Kullanıcılar Listelendi");
 	}
 
 	@Override
-	public void add(User user) {
+	public Result add(User user) {
 		if(user.getPassword()!=null && user.getPassword()!=null) {
 			this.userDao.save(user);
+			return new SuccessResult("Kullanıcı Eklendi");
 		}else {
-			return;
+			return new ErrorResult("Lütfen zorunlu alanları doldurunuz!!");
 		}
 		
 	
 	}
 
 	@Override
-	public void delete(User user) {
+	public Result delete(User user) {
 		this.userDao.delete(user);
+		return new SuccessResult("Kullanıcı Silindi");
 		
 	}
 
 	@Override
-	public void update(User user) {
+	public Result update(User user) {
 		this.userDao.save(user);
+		return new SuccessResult("Kullanıcı Güncellendi");
 		
 	}
+	
+	@Override
+	public DataResult<User> getUserByEmail(String email) {
+
+		return new SuccessDataResult<User>(this.userDao.findUserByEmail(email));
+	}
+
 
 }

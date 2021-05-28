@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ilayda.hrms.business.abstracts.JobPositionService;
+import ilayda.hrms.core.utilities.result.DataResult;
+import ilayda.hrms.core.utilities.result.ErrorResult;
+import ilayda.hrms.core.utilities.result.Result;
+import ilayda.hrms.core.utilities.result.SuccessDataResult;
+import ilayda.hrms.core.utilities.result.SuccessResult;
 import ilayda.hrms.dataAccess.abstracts.JobPositionDao;
 import ilayda.hrms.entities.concretes.JobPosition;
 
@@ -21,28 +26,40 @@ public class JobPositionManager implements JobPositionService{
 	}
 
 	@Override
-	public List<JobPosition> getAll() {
-		return this.positionDao.findAll();
+	public DataResult<List<JobPosition>> getAll() {
+		return new SuccessDataResult<List<JobPosition>>(this.positionDao.findAll(),"İş Pozisyonları Listelendi");
 	}
 
 	@Override
-	public void add(JobPosition position) {
-		if(position.getPosition()!=null) {
+	public Result add(JobPosition position) {
+		
+		if(positionDao.findByPositionEquals(position.getPosition()) !=null) {
+			return new ErrorResult("İş pozisyonu mevcut" + " " +"Ekleme Başarısız!!");
+		}else {
 			this.positionDao.save(position);
+			 return new SuccessResult("İş Pozisyonu Eklendi");
 		}
-		
+
 	}
 
 	@Override
-	public void delete(JobPosition position) {
+	public Result delete(JobPosition position) {
 		this.positionDao.delete(position);
+		return new SuccessResult("İş Pozisyonu Silindi");
 		
 	}
 
 	@Override
-	public void update(JobPosition position) {
+	public Result update(JobPosition position) {
 		this.positionDao.save(position);
+		return new SuccessResult("İş Pozisyonu Güncellendi");
 		
 	}
+
+	@Override
+	public DataResult<JobPosition> findByPositionEquals(String position) {
+		return new SuccessDataResult<JobPosition>(this.positionDao.findByPositionEquals(position), "İş posizyonu mevcut.");
+	}
+
 
 }

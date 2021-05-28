@@ -2,13 +2,15 @@ package ilayda.hrms.business.abstracts;
 
 import java.util.List;
 
+import ilayda.hrms.core.utilities.result.DataResult;
+import ilayda.hrms.core.utilities.result.Result;
 import ilayda.hrms.entities.concretes.Employer;
 
 public interface EmployerService {
 	
-	List<Employer> getAll();
-	void add(Employer employer);
-	void delete(Employer employer);
-	void update(Employer employer);
+	DataResult<List<Employer>> getAll();
+	Result add(Employer employer);
+	Result delete(Employer employer);
+	Result update(Employer employer);
 
 }
