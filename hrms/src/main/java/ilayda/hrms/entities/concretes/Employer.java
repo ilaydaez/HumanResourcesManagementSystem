@@ -1,7 +1,10 @@
 package ilayda.hrms.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,15 +18,14 @@ public class Employer extends User {
 	@Column(name="phone")
 	private String phone;
 	
-	@Column(name="positionId")
-	private int positionId;
+	@OneToMany(mappedBy = "employer")
+	private List<JobAdversiment> adversiments;
 
 
-	public Employer(String companyName, String website, String phone, int positionId) {
+	public Employer(String companyName, String website, String phone) {
 		super();
 		this.companyName = companyName;
 		this.phone = phone;
-		this.positionId=positionId;
 	}
 	
 	public Employer() {}
@@ -46,15 +48,7 @@ public class Employer extends User {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
-	
-	public int getPositionId() {
-		return positionId;
-	}
 
-	public void setPositionId(int positionId) {
-		this.positionId = positionId;
-	}
 	
 
 }

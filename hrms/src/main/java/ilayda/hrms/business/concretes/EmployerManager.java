@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ilayda.hrms.business.abstracts.EmployerService;
+import ilayda.hrms.business.abstracts.JobAdversimentService;
 import ilayda.hrms.core.utilities.result.DataResult;
 import ilayda.hrms.core.utilities.result.ErrorResult;
 import ilayda.hrms.core.utilities.result.Result;
@@ -13,16 +14,19 @@ import ilayda.hrms.core.utilities.result.SuccessDataResult;
 import ilayda.hrms.core.utilities.result.SuccessResult;
 import ilayda.hrms.dataAccess.abstracts.EmployerDao;
 import ilayda.hrms.entities.concretes.Employer;
+import ilayda.hrms.entities.concretes.JobAdversiment;
 
 @Service
 public class EmployerManager implements EmployerService{
 	
 	private EmployerDao employerDao;
+	private JobAdversimentService adversimentService;
 	
 	@Autowired
-	public EmployerManager(EmployerDao employerDao) {
+	public EmployerManager(EmployerDao employerDao, JobAdversimentService adversimentService) {
 		super();
 		this.employerDao = employerDao;
+		this.adversimentService =adversimentService;
 	}
 
 	@Override
@@ -53,6 +57,19 @@ public class EmployerManager implements EmployerService{
 		this.employerDao.save(employer);
 		return new SuccessResult("İş Veren Güncellendi");
 		
+	}
+
+	@Override
+	public Result addJob(JobAdversiment adversiment) {
+		
+		if(adversiment.isActive() == true) {
+			
+			this.adversimentService.add(adversiment);
+			return new SuccessResult("İş İlanı Eklendi");
+		}else {
+			return new ErrorResult("Pasif ");
+		}
+
 	}
 
 }

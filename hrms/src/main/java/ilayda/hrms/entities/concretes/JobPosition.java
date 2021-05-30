@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +18,10 @@ public class JobPosition {
 	
 	@Column(name="position")
 	private String position;
+	
+	@OneToOne
+	private JobAdversiment jobAdversiment;
+
 	
 	public JobPosition(int id, String position) {
 		super();

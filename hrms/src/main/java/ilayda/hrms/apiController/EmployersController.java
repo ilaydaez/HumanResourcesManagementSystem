@@ -13,6 +13,7 @@ import ilayda.hrms.business.abstracts.EmployerService;
 import ilayda.hrms.core.utilities.result.DataResult;
 import ilayda.hrms.core.utilities.result.Result;
 import ilayda.hrms.entities.concretes.Employer;
+import ilayda.hrms.entities.concretes.JobAdversiment;
 
 @RestController
 @RequestMapping("/api/employers")
@@ -36,4 +37,8 @@ public class EmployersController {
 		return this.employerService.add(employer);
 	}
 
+	@PostMapping("/addJob")
+	public Result addJob(@RequestBody JobAdversiment adversiment) {
+		return this.employerService.addJob(adversiment);
+	}
 }
