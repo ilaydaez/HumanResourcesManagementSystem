@@ -1,9 +1,13 @@
 package ilayda.hrms.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -12,31 +16,31 @@ import javax.persistence.Table;
 public class JobPosition {
 	
 	@Id
-	@GeneratedValue
-	@Column(name="id")
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="position_id")
+	private int positionId;
 	
 	@Column(name="position")
 	private String position;
 	
-	@OneToOne
-	private JobAdversiment jobAdversiment;
+	@OneToMany(mappedBy = "position")
+	private List<JobAdversiment> jobAdversiments;
 
 	
-	public JobPosition(int id, String position) {
+	public JobPosition(int positionId, String position) {
 		super();
-		this.id = id;
+		this.positionId = positionId;
 		this.position = position;
 	}
 	
 	public JobPosition() {}
 
-	public int getId() {
-		return id;
+	public int getPositionId() {
+		return positionId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setPositionId(int positionId) {
+		this.positionId = positionId;
 	}
 
 	public String getPosition() {

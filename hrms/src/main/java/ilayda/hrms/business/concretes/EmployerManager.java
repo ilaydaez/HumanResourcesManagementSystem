@@ -69,7 +69,6 @@ public class EmployerManager implements EmployerService{
 		}else {
 			return new ErrorResult("Pasif ");
 		}
-
 	}
 
 }

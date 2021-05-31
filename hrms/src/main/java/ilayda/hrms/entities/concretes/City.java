@@ -22,13 +22,13 @@ public class City {
 	private String city;
 	
 	@ManyToOne()
-	@JoinColumn(name="cities")
+	@JoinColumn(name="city_id")
 	private JobAdversiment jobAdversiment;
 	
 	public City(int id, String city) {
 		super();
 		this.id = id;
-		this.city = city;
+		this.id = id;
 	}
 
 	public int getId() {

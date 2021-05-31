@@ -27,6 +27,7 @@ public class User {
 	
 	private String validationCode;
 	
+	
 	public User() {}
 	
 	public User(int id, String eMail, String password) {

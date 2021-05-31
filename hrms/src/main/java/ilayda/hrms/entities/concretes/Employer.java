@@ -3,7 +3,9 @@ package ilayda.hrms.entities.concretes;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,7 +22,6 @@ public class Employer extends User {
 	
 	@OneToMany(mappedBy = "employer")
 	private List<JobAdversiment> adversiments;
-
 
 	public Employer(String companyName, String website, String phone) {
 		super();

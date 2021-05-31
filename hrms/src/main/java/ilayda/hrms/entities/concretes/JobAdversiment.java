@@ -1,30 +1,32 @@
 package ilayda.hrms.entities.concretes;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="job_adversiment")
+@Table(name ="job_adversiments")
 public class JobAdversiment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
+	@Column(name="adversiment_id")
+	private int adversimentId;
 	
-	@OneToOne
+	@ManyToOne()
+	@JoinColumn(name="position")
 	private JobPosition position;
 	
 	@OneToMany(mappedBy = "jobAdversiment")
@@ -48,11 +50,12 @@ public class JobAdversiment {
 	@Column(name="is_active")
 	private boolean isActive;
 
-	@Column(name="listing_date", columnDefinition = "Date defult CURRENT_DATE")
-	private LocalDate listingDate = LocalDate.now();
+	@Column(name="listing_date")
+	private Date listingDate;
+	
 	
 	@ManyToOne()
-	@JoinColumn(name="adversiments")
+	@JoinColumn(name="id")
 	private Employer employer;
 	
 	public JobAdversiment() {
@@ -60,10 +63,10 @@ public class JobAdversiment {
 	}
 
 
-	public JobAdversiment(int id, String description, double minSalary, double maxSalary,
-			int openPosition, Date applicationDeadline, boolean isActive, LocalDate listingDate) {
+	public JobAdversiment(int adversimentId, String description, double minSalary, double maxSalary,
+			int openPosition, Date applicationDeadline, boolean isActive, Date listingDate) {
 		super();
-		this.id = id;
+		this.adversimentId = adversimentId;
 		this.description = description;
 		this.minSalary = minSalary;
 		this.maxSalary = maxSalary;
@@ -74,17 +77,17 @@ public class JobAdversiment {
 	}
 
 	
-	public JobAdversiment(boolean isActive, LocalDate listingDate) {
+	public JobAdversiment(boolean isActive, Date listingDate) {
 		this.isActive=isActive;
 		this.listingDate=listingDate;
 	}
 
-	public int getId() {
-		return id;
+	public int getAdversimentId() {
+		return adversimentId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setAdversimentId(int adversimentId) {
+		this.adversimentId = adversimentId;
 	}
 
 	public String getDescription() {
@@ -135,12 +138,12 @@ public class JobAdversiment {
 		this.isActive = isActive;
 	}
 
-	public LocalDate getListingDate() {
+	public Date getListingDate() {
 		return listingDate;
 	}
 	
 	
-	public void setListingDate(LocalDate listingDate) {
+	public void setListingDate(Date listingDate) {
 		this.listingDate = listingDate;
 	}
 

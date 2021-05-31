@@ -1,6 +1,5 @@
 package ilayda.hrms.apiController;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ilayda.hrms.business.abstracts.JobAdversimentService;
@@ -32,24 +32,39 @@ public class JobAdversimentsController {
 		return this.adversimentService.getAll();
 	}
 	
+	@GetMapping("/getByAdversimentId")
+	public DataResult<JobAdversiment> getByAdversimentId(int id){
+		return this.adversimentService.getByAdversimentId(id);
+	}
+	
 	@PostMapping("/add")
 	public Result add(@RequestBody JobAdversiment adversiment) {
 		return this.adversimentService.add(adversiment);
 	}
 	
+	@PostMapping("/update")
+	public Result update(@RequestBody JobAdversiment adversiment) {
+		return this.adversimentService.update(adversiment);
+	}
+	
+	@PostMapping("/changeOpenToClose")
+	public Result changeOpenToClose(int id) {
+		return this.adversimentService.changeOpenToClose(id);
+	}
+	
 	@GetMapping("/getByIsActive")
-	public DataResult<List<JobAdversiment>> getByIsActive(boolean active){
-		return this.adversimentService.getByIsActive(active);
+	public DataResult<List<JobAdversiment>> getByIsActive(){
+		return this.adversimentService.getByIsActive();
 	}
 	
-	@GetMapping("/getByListingDate")
-	public DataResult<List<JobAdversiment>> getByListingDateAfter(LocalDate listingDate){
-		return this.adversimentService.getByListingDateAfter(listingDate);
+	@GetMapping("/getAllSorted")
+	public DataResult<List<JobAdversiment>> getAllSorted(){
+		return this.adversimentService.getAllSorted();
 	}
 	
-	@GetMapping("/getByEmployerAndIsActive")
-	public DataResult<List<JobAdversiment>> getByEmployerAndIsActive(String employer, boolean active){
-		return this.adversimentService.getByEmployerAndIsActive(employer,active);
+	@GetMapping("/getByEmployer_CompanyNameAndIsActiveTrue")
+	public DataResult<List<JobAdversiment>> getByEmployer_CompanyNameAndIsActiveTrue(@RequestParam("company_name") String companyName){
+		return this.adversimentService.getByEmployer_CompanyNameAndIsActiveTrue(companyName);
 	}
 	
 
