@@ -4,20 +4,27 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name ="job_adversiments")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","employer"})
 public class JobAdversiment {
 	
 	@Id
@@ -57,94 +64,5 @@ public class JobAdversiment {
 	@ManyToOne()
 	@JoinColumn(name="id")
 	private Employer employer;
-	
-	public JobAdversiment() {
-		super();
-	}
-
-
-	public JobAdversiment(int adversimentId, String description, double minSalary, double maxSalary,
-			int openPosition, Date applicationDeadline, boolean isActive, Date listingDate) {
-		super();
-		this.adversimentId = adversimentId;
-		this.description = description;
-		this.minSalary = minSalary;
-		this.maxSalary = maxSalary;
-		this.openPosition = openPosition;
-		this.applicationDeadline = applicationDeadline;
-		this.isActive=isActive;
-		this.listingDate=listingDate;
-	}
-
-	
-	public JobAdversiment(boolean isActive, Date listingDate) {
-		this.isActive=isActive;
-		this.listingDate=listingDate;
-	}
-
-	public int getAdversimentId() {
-		return adversimentId;
-	}
-
-	public void setAdversimentId(int adversimentId) {
-		this.adversimentId = adversimentId;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public double getMinSalary() {
-		return minSalary;
-	}
-
-	public void setMinSalary(double minSalary) {
-		this.minSalary = minSalary;
-	}
-
-	public double getMaxSalary() {
-		return maxSalary;
-	}
-
-	public void setMaxSalary(double maxSalary) {
-		this.maxSalary = maxSalary;
-	}
-
-	public int getOpenPosition() {
-		return openPosition;
-	}
-
-	public void setOpenPosition(int openPosition) {
-		this.openPosition = openPosition;
-	}
-
-	public Date getApplicationDeadline() {
-		return applicationDeadline;
-	}
-
-	public void setApplicationDeadline(Date applicationDeadline) {
-		this.applicationDeadline = applicationDeadline;
-	}
-
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-
-	public Date getListingDate() {
-		return listingDate;
-	}
-	
-	
-	public void setListingDate(Date listingDate) {
-		this.listingDate = listingDate;
-	}
 
 }

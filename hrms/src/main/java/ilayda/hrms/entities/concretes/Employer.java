@@ -1,16 +1,23 @@
 package ilayda.hrms.entities.concretes;
-
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name ="employers")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","adversiments"})
 public class Employer extends User {
 	
 
@@ -22,34 +29,5 @@ public class Employer extends User {
 	
 	@OneToMany(mappedBy = "employer")
 	private List<JobAdversiment> adversiments;
-
-	public Employer(String companyName, String website, String phone) {
-		super();
-		this.companyName = companyName;
-		this.phone = phone;
-	}
-	
-	public Employer() {}
-
-
-
-	public String getCompanyName() {
-		return companyName;
-	}
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	
 
 }

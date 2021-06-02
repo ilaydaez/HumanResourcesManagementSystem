@@ -1,5 +1,7 @@
 package ilayda.hrms.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -19,24 +22,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name ="cities")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler", "jobAdversiment", "employee"})
-public class City {
-	
+@Table(name = "faculties")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler", "school"})
+public class Faculty {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="city_id")
-	private int cityId;
+	@Column(name = "faculty_id")
+	private int facultyId;
 	
-	@Column(name="city")
-	private String city;
-	
-	@ManyToOne()
-	@JoinColumn(name="adversiment_id")
-	private JobAdversiment jobAdversiment;
+	@Column(name = "faculty_name")
+	private String facultyName;
 	
 	@ManyToOne()
-	@JoinColumn(name="id")
-	private Employee employee;
+	@JoinColumn(name = "school_id")
+	private School school;
+	
+	@OneToMany(mappedBy = "faculty")
+	private List<Department> departments;
 
 }
