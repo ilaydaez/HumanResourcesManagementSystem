@@ -1,7 +1,5 @@
 package ilayda.hrms.entities.concretes;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,37 +20,27 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "images")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","user"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cv"})
 public class Image {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="image_id")
-	private int imageId;
+	@Column(name="id")
+	private int id;
 	
 	@Column(name = "name")
-	private String name;
-	
-	@Column(name="image_path")
-	private String imagePath;
-	
-	@Column(name="public_id")
-	private String publicId;
-	
-//	@Column(name="upload_date")
-//	private Date uploadDate;
+    private String name;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @Column(name = "image_id")
+    private String imageId;
 	
 	
 	@ManyToOne()
-	@JoinColumn(name = "id")
-	private User user;
-	
-	public Image(String name, String imagePath, String publicId, User user) {
-		this.name = name;
-		this.imagePath = imagePath;
-		this.publicId = publicId;
-		this.user = user;
+	@JoinColumn(name = "cv_id")
+	private CreateCv cv;
 
-	}
 
 }

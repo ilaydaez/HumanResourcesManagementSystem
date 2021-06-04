@@ -43,16 +43,4 @@ public class CreateCvManager implements CreateCvSrevice{
 		return new SuccessDataResult<List<CreateCv>>(this.cvDao.findAll(),"Cv Listelendi");
 	}
 
-	@Override
-	public Result insertCreateCv(String firstName, String lastName, Date birthDate, String schoolName,
-			String facultyName, String departmentName, Date schoolStartDate, Date schoolFinishDate, String companyName,
-			String position, Date jobStartDate, Date jobFinishDate, String language, int languageLevel, String github,
-			String linkedin, String programName) {
-		this.cvDao.insertCreateCv(firstName, lastName, birthDate, 
-				schoolName, facultyName, departmentName, schoolStartDate, schoolFinishDate, 
-				companyName, position, jobStartDate, jobFinishDate, language, languageLevel, 
-				github, linkedin, programName);
-		return new SuccessResult("Cv Oluşturuldu");
-	}
-
 }

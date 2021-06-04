@@ -8,12 +8,10 @@ import ilayda.hrms.entities.concretes.Image;
 
 public interface ImageService {
 	
-	Result add(Image image);
-
-	Result delete(int imageId);
-
-	DataResult<List<Image>> getAll();
-
-	DataResult<Image> getByImageId(int imageId);
+	 DataResult<List<Image>> getAll();
+	    Result add(Image image);
+	    Result delete(int id);
+	    DataResult<Image> getById(int id);
+	    Boolean isExist(int id);
 
 }

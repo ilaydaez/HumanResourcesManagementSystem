@@ -49,6 +49,9 @@ public class CreateCv {
 	@OneToMany(mappedBy = "cvLanguage")
 	private List<ForeignLanguage> languages;
 	
+	@OneToMany(mappedBy = "cv")
+	private List<Image> images;
+	
 	
 	//Okul bilgisi
 	
