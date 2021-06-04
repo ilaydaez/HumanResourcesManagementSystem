@@ -12,4 +12,8 @@ Veriler [Hrms_Database](https://github.com/ilaydaez/HRMS_database.git) veritaban
 Sistem içerisinde CRUD operasyonları yapılabilmektedir.
 
 
-![image](https://user-images.githubusercontent.com/77542051/118402641-737d0700-b673-11eb-8646-2253d9719b7a.png)
+![image](https://user-images.githubusercontent.com/77542051/120809594-ea127380-c552-11eb-9254-d3ddfc6754c1.png)<br>
+![image](https://user-images.githubusercontent.com/77542051/120809737-0f9f7d00-c553-11eb-8ff8-9424498f9ea2.png)<br>
+![image](https://user-images.githubusercontent.com/77542051/120809884-3198ff80-c553-11eb-97c6-7f0bec272994.png)
+
+
